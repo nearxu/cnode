@@ -1,29 +1,18 @@
-import 'core-js/fn/object/assign';
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
-import thunk from 'redux-thunk';
+import React from "react";
+import ReactDOM from "react-dom";
+import registerServiceWorker from "./registerServiceWorker";
+import routers from "./routes";
+import { Provider } from "react-redux";
+import store from "./store";
 
-import route from './Route'; //路由配置
-import reducer from './reducer/rootReducer';
-
-
-import 'normalize.css';                    /* 重置浏览器默认样式 */
-import 'flex.css';                         /* flex布局 */
-import './styles/style.less';              /* 加载公共样式 */
-import './styles/Iconfont/iconfont.css';   /* 字体图标 */
-import 'github-markdown-css';              /* markdown css */
-
-
-const store = createStore(
-    reducer,
-    applyMiddleware(thunk)
-);
+import "normalize.css"; //重置浏览器默认样式
+// import 'flex.css'; //flex布局
+import "flex.css/dist/data-flex.css"; //flex布局
+import "./common/style.less";
+// import "./Iconfont/iconfont.css"; //字体图标
 
 ReactDOM.render(
-    <Provider store={store}>
-        {route}
-    </Provider>,
-    document.getElementById('app')
+  <Provider store={store}>{routers}</Provider>,
+  document.getElementById("root")
 );
+registerServiceWorker();
